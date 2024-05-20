@@ -17,3 +17,4 @@ pytest -s --alluredir=./allure_result
 ```
 allure serve allure_result
 ```# Sprint_6
+# Sprint_6
