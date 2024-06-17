@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.keys import Keys
+import allure
 from locators.order_page_locators import (
     order_btn, 
     approve_btn, 
@@ -22,15 +23,19 @@ class OrderPage(BasePage):
         super().__init__()
         self.open_browser()
 
+    @allure.step('Нажимаем на кнопку "Заказать (верхнюю)"')
     def click_top_order_button(self):
         self.wb.find_elements(*order_btn)[0].click()
 
+    @allure.step('Нажимаем на кнопку "Заказать (нижнюю)"')
     def click_bottom_order_button(self):
         self.wb.find_elements(*order_btn)[1].click()
 
+    @allure.step('Закрываем модальное окно')
     def close_modal(self):
         self.wb.find_element(*approve_btn).click()
 
+    @allure.step('Заполняем поля для заказа')
     def fill_the_order(self, data):
         self.wb.find_element(*name_fld).send_keys(data[0])
         self.wb.find_element(*lname_fld).send_keys(data[1])

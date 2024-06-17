@@ -1,11 +1,10 @@
 import pytest
 import allure
-from selenium.webdriver.common.by import By       
-from locators import cookie_btn, xpath_text_template
+from pages.main_page import MainPage
 
 
 @allure.story('Вопросы о важном')
-class TestQASection:
+class TestQASection():
     @allure.title('Проверяем вопрос и ответ')
     @pytest.mark.parametrize('question, answer', [
         ('Сколько это стоит? И как оплатить?', 'Сутки — 400 рублей. Оплата курьеру — наличными или картой.'),
@@ -17,11 +16,9 @@ class TestQASection:
         ('Можно ли отменить заказ?', 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.'),
         ('Я жизу за МКАДом, привезёте?', 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'),
     ])
-    def test_question_and_answer(self, wb, question, answer):
-        wb.find_element(By.XPATH, cookie_btn).click()
-        question_loc = xpath_text_template % question
-        wb.find_element(By.XPATH, question_loc).click()
-        answer_loc = xpath_text_template % answer
-        a_block = wb.find_element(By.XPATH, answer_loc)
+    def test_question_and_answer(self, question, answer):
+        mp = MainPage()
+        mp.click_question(question)
+        a_block = mp.get_answer(answer)
         assert a_block
         assert not a_block.get_property('hidden')
