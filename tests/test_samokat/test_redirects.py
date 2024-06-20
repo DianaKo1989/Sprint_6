@@ -6,8 +6,8 @@ from pages.order_page import OrderPage
 @allure.story('Редиректы логотипа')
 class TestOrders:
     @allure.title('E2E тест на клик по логотипам')
-    def test_make_order_e2e(self):
-        op = OrderPage()
+    def test_make_order_e2e(self, wb):
+        op = OrderPage(wb)
         op.click_logo_scooter()
         with allure.step('Проверяем, что открылась главная страница «Самоката»'):
             assert op.wb.current_url == 'https://qa-scooter.praktikum-services.ru/'

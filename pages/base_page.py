@@ -23,3 +23,16 @@ class BasePage:
     allure.step('Нажимаем на логотип Яндекса')
     def click_logo_yndx(self):
         self.wb.find_element(*yndx).click()
+
+    
+    def find_element(self):
+        pass
+
+    def find_elements(self):
+        pass    
+
+    def send_keys(self):
+        pass
+
+    def click(self):
+        pass    
