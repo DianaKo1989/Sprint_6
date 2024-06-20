@@ -16,8 +16,8 @@ class TestQASection():
         ('Можно ли отменить заказ?', 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.'),
         ('Я жизу за МКАДом, привезёте?', 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'),
     ])
-    def test_question_and_answer(self, question, answer):
-        mp = MainPage()
+    def test_question_and_answer(self, wb, question, answer):
+        mp = MainPage(wb)
         mp.click_question(question)
         a_block = mp.get_answer(answer)
         assert a_block
